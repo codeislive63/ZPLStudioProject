@@ -1,9 +1,8 @@
-﻿<Application x:Class="ZPLStudio.App"
+<Application x:Class="ZPLStudio.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ZPLStudio"
-             StartupUri="MainWindow.xaml">
+             xmlns:converters="clr-namespace:ZPLStudio.Converters">
     <Application.Resources>
-         
+        <converters:BarcodeConverter x:Key="BarcodeConverter" />
     </Application.Resources>
 </Application>
