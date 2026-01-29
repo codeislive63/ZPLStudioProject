@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="03/22/2025 12:00:00" ReportInfo.Modified="03/22/2025 12:00:00" ReportInfo.CreatorVersion="2024.2.0.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="Label" ReferenceName="Label" Enabled="true">
+      <Column Name="Tenam" DataType="System.String"/>
+      <Column Name="Artnr" DataType="System.String"/>
+      <Column Name="Artbez" DataType="System.String"/>
+      <Column Name="Bstchgnam5" DataType="System.String"/>
+      <Column Name="Bstmg" DataType="System.Decimal"/>
+      <Column Name="Aufid" DataType="System.String"/>
+      <Column Name="Gpplz" DataType="System.String"/>
+      <Column Name="Gpbez" DataType="System.String"/>
+      <Column Name="Lndnam" DataType="System.String"/>
+      <Column Name="Gport1" DataType="System.String"/>
+      <Column Name="Gpstrasse" DataType="System.String"/>
+      <Column Name="Lfakdnr" DataType="System.String"/>
+      <Column Name="Adres" DataType="System.String"/>
+      <Column Name="Brutto" DataType="System.Decimal"/>
+      <Column Name="Tesortnr" DataType="System.Int32"/>
+      <Column Name="Lfaempfkdnr" DataType="System.String"/>
+      <Column Name="Market" DataType="System.String"/>
+      <Column Name="CountBst" DataType="System.Int32"/>
+      <Column Name="SumBst" DataType="System.Int32"/>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="100" PaperHeight="60" LeftMargin="2" RightMargin="2" TopMargin="2" BottomMargin="2">
+    <DataBand Name="Data1" Width="362.88" Height="211.68" DataSource="Label">
+      <TextObject Name="Title1" Left="9.45" Top="4.72" Width="132.3" Height="18.9" Text="Код магазина" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="TenamValue" Left="9.45" Top="23.62" Width="132.3" Height="18.9" Text="[Label.Tenam]" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="AddressLabel" Left="9.45" Top="45.36" Width="132.3" Height="18.9" Text="Адрес доставки" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="AddressValue" Left="9.45" Top="64.26" Width="207.9" Height="37.8" Text="[Label.Adres]" Font="Arial, 8pt"/>
+      <BarcodeObject Name="Barcode1" Left="226.8" Top="9.45" Width="113.4" Height="47.25" Text="[Label.Tenam]" Barcode="Code128" ShowText="true"/>
+      <LineObject Name="Line1" Left="9.45" Top="106.02" Width="343.2" Border.Width="1"/>
+      <TextObject Name="ReceiverLabel" Left="9.45" Top="113.49" Width="132.3" Height="18.9" Text="Грузополучатель" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="ReceiverValue" Left="9.45" Top="132.39" Width="207.9" Height="18.9" Text="[Label.Gpbez]" Font="Arial, 8pt"/>
+      <TextObject Name="ExtraLabel" Left="9.45" Top="151.29" Width="132.3" Height="18.9" Text="Доп. сведения" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="ExtraValue" Left="9.45" Top="170.19" Width="207.9" Height="18.9" Text="[Label.Bstchgnam5]" Font="Arial, 8pt"/>
+      <TextObject Name="WeightLabel" Left="226.8" Top="113.49" Width="94.5" Height="18.9" Text="Вес брутто (кг)" Font="Arial, 8pt"/>
+      <TextObject Name="WeightValue" Left="226.8" Top="132.39" Width="94.5" Height="18.9" Text="[Label.Brutto]" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="BoxesLabel" Left="226.8" Top="151.29" Width="94.5" Height="18.9" Text="Короб в заказе" Font="Arial, 8pt"/>
+      <TextObject Name="BoxesValue" Left="226.8" Top="170.19" Width="94.5" Height="18.9" Text="[Label.CountBst]" Font="Arial, 8pt, style=Bold"/>
+    </DataBand>
+  </ReportPage>
+</Report>

@@ -5,8 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZPLStudio"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="ZPL Studio - Торцевые ярлыки" Height="720" Width="1100">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,12">
+            <TextBlock Text="TENAM:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+            <TextBox Width="200"
+                     Text="{Binding Tenam, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="0,0,12,0"/>
+            <Button Content="Загрузить" Width="120" Margin="0,0,8,0"
+                    Command="{Binding LoadCommand}"/>
+            <Button Content="Обновить принтеры" Width="170"
+                    Command="{Binding RefreshPrintersCommand}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,12">
+            <TextBlock Text="Принтер:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+            <ComboBox Width="320"
+                      ItemsSource="{Binding Printers}"
+                      SelectedItem="{Binding SelectedPrinter}"
+                      Margin="0,0,12,0"/>
+            <Button Content="Печать" Width="120" Margin="0,0,8,0"
+                    Command="{Binding PrintCommand}"/>
+            <Button Content="Редактировать шаблон" Width="200"
+                    Command="{Binding EditTemplateCommand}"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="2"
+                  ItemsSource="{Binding Items}"
+                  SelectedItem="{Binding SelectedItem}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="TENAM" Binding="{Binding Tenam}" Width="120"/>
+                <DataGridTextColumn Header="ARTNR" Binding="{Binding Artnr}" Width="200"/>
+                <DataGridTextColumn Header="ARTBEZ" Binding="{Binding Artbez}" Width="220"/>
+                <DataGridTextColumn Header="BSTCHGNAM5" Binding="{Binding Bstchgnam5}" Width="200"/>
+                <DataGridTextColumn Header="BSTMG" Binding="{Binding Bstmg}" Width="80"/>
+                <DataGridTextColumn Header="AUFID" Binding="{Binding Aufid}" Width="160"/>
+                <DataGridTextColumn Header="GPBEZ" Binding="{Binding Gpbez}" Width="220"/>
+                <DataGridTextColumn Header="ADRES" Binding="{Binding Adres}" Width="260"/>
+                <DataGridTextColumn Header="BRUTTO" Binding="{Binding Brutto}" Width="80"/>
+                <DataGridTextColumn Header="COUNTBST" Binding="{Binding CountBst}" Width="80"/>
+                <DataGridTextColumn Header="SUM_BST" Binding="{Binding SumBst}" Width="80"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock Grid.Row="3"
+                   Text="{Binding StatusMessage}"
+                   Foreground="DarkSlateGray"/>
     </Grid>
 </Window>
