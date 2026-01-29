@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="01/01/2025 00:00:00" ReportInfo.Modified="01/01/2025 00:00:00" ReportInfo.CreatorVersion="2024.2.0.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="Label" ReferenceName="Label" DataType="System.Collections.Generic.List`1[[ZPLStudio.Data.ListForTekartonV, ZPLStudio]]" Enabled="true">
+      <Column Name="Tenam" DataType="System.String" />
+      <Column Name="Artnr" DataType="System.String" />
+      <Column Name="Artbez" DataType="System.String" />
+      <Column Name="Bstchgnam5" DataType="System.String" />
+      <Column Name="Gpbez" DataType="System.String" />
+      <Column Name="Gport1" DataType="System.String" />
+      <Column Name="Gpstrasse" DataType="System.String" />
+      <Column Name="Brutto" DataType="System.Decimal" />
+      <Column Name="Bstmg" DataType="System.Decimal" />
+      <Column Name="SumBst" DataType="System.Decimal" />
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" PaperWidth="100" PaperHeight="150" LeftMargin="5" RightMargin="5" TopMargin="5" BottomMargin="5">
+    <DataBand Name="Data1" Width="340.2" Height="340.2" DataSource="Label">
+      <TextObject Name="TitleTenam" Left="0" Top="0" Width="200" Height="20" Text="Код магазина" Font="Arial, 10, style=Bold" />
+      <TextObject Name="TenamValue" Left="0" Top="22" Width="200" Height="20" Text="[Label.Tenam]" Font="Arial, 12, style=Bold" />
+      <TextObject Name="AddressTitle" Left="0" Top="50" Width="200" Height="16" Text="Адрес доставки" Font="Arial, 9" />
+      <TextObject Name="AddressValue" Left="0" Top="68" Width="320" Height="48" Text="[Label.Gpbez]\n[Label.Gport1]\n[Label.Gpstrasse]" Font="Arial, 9" />
+      <TextObject Name="OrderTitle" Left="0" Top="124" Width="120" Height="16" Text="Код заказа" Font="Arial, 9" />
+      <TextObject Name="OrderValue" Left="0" Top="142" Width="320" Height="20" Text="[Label.Bstchgnam5]" Font="Arial, 8" />
+      <TextObject Name="Weights" Left="0" Top="170" Width="320" Height="20" Text="Вес брутто: [Label.Brutto]" Font="Arial, 9" />
+      <TextObject Name="Qty" Left="0" Top="190" Width="320" Height="20" Text="Кол-во в коробе: [Label.Bstmg]" Font="Arial, 9" />
+      <TextObject Name="Sum" Left="0" Top="210" Width="320" Height="20" Text="Изделий в заказе: [Label.SumBst]" Font="Arial, 9" />
+    </DataBand>
+  </ReportPage>
+</Report>
