@@ -1,62 +1,12 @@
-<Window x:Class="ZPLStudio.MainWindow"
+﻿<Window x:Class="ZPLStudio.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZPLStudio"
         mc:Ignorable="d"
-        Title="Печать торцевых ярлыков" Height="720" Width="1200"
-        WindowStartupLocation="CenterScreen">
-    <Grid Margin="24">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="3*" />
-        </Grid.ColumnDefinitions>
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="0 0 24 16">
-            <TextBlock Text="TENAM" FontWeight="SemiBold" Margin="0 0 0 6" />
-            <StackPanel Orientation="Horizontal">
-                <TextBox Width="220" Text="{Binding Tenam, UpdateSourceTrigger=PropertyChanged}" />
-                <Button Content="Загрузить" Margin="12 0 0 0" Width="120" Command="{Binding LoadCommand}" />
-            </StackPanel>
-
-            <TextBlock Text="Принтер" FontWeight="SemiBold" Margin="0 16 0 6" />
-            <ComboBox ItemsSource="{Binding Printers}" SelectedItem="{Binding SelectedPrinter}" Width="352" />
-
-            <StackPanel Orientation="Horizontal" Margin="0 16 0 0">
-                <Button Content="Печать" Width="120" Command="{Binding PrintCommand}" />
-                <Button Content="Редактировать шаблон" Margin="12 0 0 0" Width="200" Command="{Binding EditTemplateCommand}" />
-            </StackPanel>
-        </StackPanel>
-
-        <GroupBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Header="Превью данных" Padding="12">
-            <DataGrid ItemsSource="{Binding Labels}" AutoGenerateColumns="False" IsReadOnly="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="TENAM" Binding="{Binding Tenam}" Width="120" />
-                    <DataGridTextColumn Header="ARTNR" Binding="{Binding Artnr}" Width="180" />
-                    <DataGridTextColumn Header="ARTBEZ" Binding="{Binding Artbez}" Width="220" />
-                    <DataGridTextColumn Header="BSTCHGNAM5" Binding="{Binding Bstchgnam5}" Width="220" />
-                    <DataGridTextColumn Header="BSTMG" Binding="{Binding Bstmg}" Width="80" />
-                    <DataGridTextColumn Header="AUFID" Binding="{Binding Aufid}" Width="160" />
-                    <DataGridTextColumn Header="GPBEZ" Binding="{Binding Gpbez}" Width="200" />
-                    <DataGridTextColumn Header="GPORT1" Binding="{Binding Gport1}" Width="160" />
-                    <DataGridTextColumn Header="GPSTRASSE" Binding="{Binding Gpstrasse}" Width="220" />
-                    <DataGridTextColumn Header="BRUTTO" Binding="{Binding Brutto}" Width="80" />
-                </DataGrid.Columns>
-            </DataGrid>
-        </GroupBox>
-
-        <GroupBox Grid.Row="2" Grid.ColumnSpan="2" Header="Подсказки" Padding="12" Margin="0 24 0 0">
-            <StackPanel>
-                <TextBlock Text="1. Укажите TENAM и загрузите данные из Oracle view." />
-                <TextBlock Text="2. В FastReport шаблоне используйте источник данных 'Label'." />
-                <TextBlock Text="3. Для Zebra укажите правильный принтер и размер бумаги в шаблоне." />
-                <TextBlock Text="4. Шаблон сохраняется в папку Reports и доступен для редактирования." />
-            </StackPanel>
-        </GroupBox>
     </Grid>
 </Window>
