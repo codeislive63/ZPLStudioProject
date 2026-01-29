@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    body { font-family: Segoe UI, Arial, sans-serif; font-size: 12px; margin: 0; }
+    .label { width: 100mm; height: 150mm; padding: 8mm; box-sizing: border-box; }
+    .row { display: flex; justify-content: space-between; align-items: flex-start; }
+    .title { font-weight: 600; margin-bottom: 2mm; }
+    .separator { border-bottom: 1px solid #999; margin: 4mm 0; }
+    .barcode { text-align: right; }
+    .barcode img { width: 70mm; height: 12mm; }
+    .small { font-size: 11px; }
+    .eac { font-weight: 700; font-size: 28px; text-align: center; }
+    .right-col { text-align: center; min-width: 22mm; }
+  </style>
+</head>
+<body>
+  <div class="label">
+    <div class="row">
+      <div>
+        <div class="title">Код магазина</div>
+        <div style="font-size:16px;">{{Lfakdnr}}</div>
+      </div>
+      <div class="barcode">
+        <img src="{{BarcodeDataUri}}" alt="barcode" />
+        <div class="small">{{Tenam}}</div>
+      </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <div>
+      <div class="title">Адрес доставки</div>
+      <div>{{Gpbez}}</div>
+      <div>{{Gport1}}</div>
+      <div>{{Gpstrasse}}</div>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="row">
+      <div>
+        <div class="title">Грузополучатель</div>
+        <div>{{Gpbez}}</div>
+
+        <div class="title" style="margin-top:3mm;">Дополнительные сведения</div>
+        <div class="small">{{Bstchgnam5}}</div>
+
+        <div class="title" style="margin-top:3mm;">Вес брутто (кг)</div>
+        <div>{{Brutto}}</div>
+      </div>
+      <div class="right-col">
+        <div class="eac">EAC</div>
+        <div style="margin-top:6mm;">Коробов в заказе</div>
+        <div style="font-size:16px;">{{Countbst}}</div>
+        <div style="margin-top:6mm;">Изделий в коробе</div>
+        <div style="font-size:16px;">{{SumBst}}</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
