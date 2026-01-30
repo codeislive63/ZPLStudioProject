@@ -15,11 +15,10 @@ public class LabelRepository : ILabelRepository
 
     public async Task<IReadOnlyList<LabelRecord>> GetByTenamAsync(string tenam, CancellationToken cancellationToken)
     {
-        // Oracle-провайдер иногда выполняет async синхронно, поэтому уводим запрос в фон.
-        return await Task.Run(() =>
-            _dbContext.LabelRecords
-                .AsNoTracking()
-                .Where(record => record.Tenam == tenam)
-                .ToList(), cancellationToken);
+        // Читаем как есть из view, без трекинга, чтобы не грузить контекст.
+        return await _dbContext.LabelRecords
+            .AsNoTracking()
+            .Where(record => record.Tenam == tenam)
+            .ToListAsync(cancellationToken);
     }
 }

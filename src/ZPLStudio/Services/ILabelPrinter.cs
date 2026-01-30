@@ -5,5 +5,5 @@ namespace ZPLStudio.Services;
 
 public interface ILabelPrinter
 {
-    Task PrintAsync(LabelRecord record, PrintQueue queue, string? templateText, CancellationToken cancellationToken);
+    Task PrintAsync(LabelRecord record, PrintQueue queue, CancellationToken cancellationToken);
 }

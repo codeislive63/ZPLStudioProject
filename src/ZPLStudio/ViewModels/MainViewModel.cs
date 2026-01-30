@@ -2,7 +2,6 @@ using System.Collections.ObjectModel;
 using System.Printing;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Threading;
 using ZPLStudio.Commands;
 using ZPLStudio.Models;
 using ZPLStudio.Services;
@@ -14,13 +13,13 @@ public class MainViewModel : ViewModelBase
     private readonly ILabelRepository _labelRepository;
     private readonly ILabelTemplateService _templateService;
     private readonly ILabelPrinter _labelPrinter;
+    private readonly LabelTemplateOptions _options;
     private bool _isBusy;
     private string _tenam;
     private LabelRecord? _selectedRecord;
     private PrintQueue? _selectedPrinter;
     private string _templateText;
     private FrameworkElement? _previewContent;
-    private readonly DispatcherTimer _previewTimer;
 
     public MainViewModel(
         ILabelRepository labelRepository,
@@ -31,22 +30,13 @@ public class MainViewModel : ViewModelBase
         _labelRepository = labelRepository;
         _templateService = templateService;
         _labelPrinter = labelPrinter;
+        _options = options;
 
         _tenam = options.DefaultTenam;
         _templateText = _templateService.LoadTemplateText();
 
         Printers = new ObservableCollection<PrintQueue>(GetPrinters());
         Records = new ObservableCollection<LabelRecord>();
-
-        _previewTimer = new DispatcherTimer
-        {
-            Interval = TimeSpan.FromMilliseconds(300)
-        };
-        _previewTimer.Tick += (_, _) =>
-        {
-            _previewTimer.Stop();
-            UpdatePreview();
-        };
 
         LoadCommand = new RelayCommand(async _ => await LoadAsync(), _ => !IsBusy);
         PrintCommand = new RelayCommand(async _ => await PrintAsync(), _ => CanPrint());
@@ -79,7 +69,7 @@ public class MainViewModel : ViewModelBase
         {
             _selectedRecord = value;
             OnPropertyChanged();
-            SchedulePreviewUpdate();
+            UpdatePreview();
             RaiseCommandStates();
         }
     }
@@ -102,7 +92,6 @@ public class MainViewModel : ViewModelBase
         {
             _templateText = value;
             OnPropertyChanged();
-            SchedulePreviewUpdate();
         }
     }
 
@@ -173,7 +162,7 @@ public class MainViewModel : ViewModelBase
         IsBusy = true;
         try
         {
-            await _labelPrinter.PrintAsync(SelectedRecord, SelectedPrinter, TemplateText, CancellationToken.None);
+            await _labelPrinter.PrintAsync(SelectedRecord, SelectedPrinter, CancellationToken.None);
         }
         catch (Exception ex)
         {
@@ -188,13 +177,13 @@ public class MainViewModel : ViewModelBase
     private void ReloadTemplate()
     {
         TemplateText = _templateService.LoadTemplateText();
-        SchedulePreviewUpdate();
+        UpdatePreview();
     }
 
     private void SaveTemplate()
     {
         _templateService.SaveTemplateText(TemplateText);
-        SchedulePreviewUpdate();
+        UpdatePreview();
     }
 
     private void UpdatePreview()
@@ -207,24 +196,13 @@ public class MainViewModel : ViewModelBase
 
         try
         {
-            PreviewContent = _templateService.BuildLabel(SelectedRecord, TemplateText);
+            _templateService.SaveTemplateText(TemplateText);
+            PreviewContent = _templateService.BuildLabel(SelectedRecord);
         }
         catch (Exception ex)
         {
             MessageBox.Show($"Ошибка шаблона: {ex.Message}", "Шаблон", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
-    }
-
-    private void SchedulePreviewUpdate()
-    {
-        if (SelectedRecord is null)
-        {
-            PreviewContent = null;
-            return;
-        }
-
-        _previewTimer.Stop();
-        _previewTimer.Start();
     }
 
     private bool CanPrint() => SelectedRecord is not null && SelectedPrinter is not null && !IsBusy;

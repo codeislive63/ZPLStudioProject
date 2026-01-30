@@ -33,14 +33,9 @@ public partial class App : Application
                 services.AddSingleton<LabelTemplateOptions>(sp =>
                 {
                     var section = context.Configuration.GetSection("Label");
-                    var formatValue = section.GetValue<string>("TemplateFormat");
-                    var templateFormat = Enum.TryParse(formatValue, true, out TemplateFormat parsedFormat)
-                        ? parsedFormat
-                        : TemplateFormat.Html;
                     return new LabelTemplateOptions
                     {
-                        TemplatePath = section.GetValue<string>("TemplatePath") ?? "Templates/EndLabelTemplate.html",
-                        TemplateFormat = templateFormat,
+                        TemplatePath = section.GetValue<string>("TemplatePath") ?? "Templates/EndLabelTemplate.xaml",
                         DefaultTenam = section.GetValue<string>("DefaultTenam") ?? string.Empty,
                         PageWidthMm = section.GetValue<double>("PageWidthMm", 100),
                         PageHeightMm = section.GetValue<double>("PageHeightMm", 150)

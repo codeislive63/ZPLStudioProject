@@ -22,9 +22,9 @@ public class BarcodeConverter : IValueConverter
             Format = BarcodeFormat.CODE_128,
             Options = new EncodingOptions
             {
-                Height = 80,
+                Height = 120,
                 Width = 420,
-                Margin = 1,
+                Margin = 2,
                 PureBarcode = true
             }
         };

@@ -39,7 +39,7 @@
                     </Border>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="HTML шаблон">
+            <TabItem Header="Шаблон">
                 <Grid Margin="8">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -48,7 +48,6 @@
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
                         <Button Content="Перечитать" Command="{Binding ReloadTemplateCommand}" />
                         <Button Content="Сохранить" Command="{Binding SaveTemplateCommand}" Margin="8,0,0,0" />
-                        <TextBlock Text="Изменения отображаются автоматически." Margin="12,4,0,0" Foreground="#666" />
                     </StackPanel>
                     <TextBox Grid.Row="1"
                              Text="{Binding TemplateText, UpdateSourceTrigger=PropertyChanged}"

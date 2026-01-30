@@ -16,11 +16,11 @@ public class LabelPrinter : ILabelPrinter
         _options = options;
     }
 
-    public Task PrintAsync(LabelRecord record, PrintQueue queue, string? templateText, CancellationToken cancellationToken)
+    public Task PrintAsync(LabelRecord record, PrintQueue queue, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
-        var label = _templateService.BuildLabel(record, templateText);
+        var label = _templateService.BuildLabel(record);
         var size = new Size(MmToPixels(_options.PageWidthMm), MmToPixels(_options.PageHeightMm));
 
         label.Measure(size);
