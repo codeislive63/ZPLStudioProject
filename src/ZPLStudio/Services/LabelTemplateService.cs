@@ -32,7 +32,9 @@ public class LabelTemplateService : ILabelTemplateService
     {
         if (!File.Exists(_options.TemplatePath))
         {
-            return "<Grid xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\" />";
+            return _options.TemplateFormat == TemplateFormat.Html
+                ? "<html><body><div>Template not found.</div></body></html>"
+                : "<Grid xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\" />";
         }
 
         return File.ReadAllText(_options.TemplatePath);
